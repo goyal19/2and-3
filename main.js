@@ -6,6 +6,14 @@ function start()
 {
     recognition.start();
 } 
+recognition.onresult=function(event){
+    console.log(event);
+    Content=event.results[0][0].transcript.toLowerCase();
+    console.log(Content);
+    if(Content=="selfie"){
+        speak();
+    }
+}
 
 
 camera = document.getElementById("camera");
@@ -36,29 +44,17 @@ function take_snapshot()
 
     Webcam.snap(function(data_uri) {
         if(img_id=="selfie1"){
-            document.getElementById("result1").innerHTML ='<img id="selfie1' src="'+data_uri+'"/>';
+            document.getElementById("result1").innerHTML ='<img id="selfie1" src="'+data_uri+'"/>';
 
         }
-        document.getElementById("result2").innerHTML ='<img id="selfie2' src="'+data_uri+'"/>';
+        if(img_id=="selfie2"){
+        document.getElementById("result2").innerHTML ='<img id="selfie2" src="'+data_uri+'"/>';
 
     }
-    document.getElementById("result3").innerHTML ='<img id="selfie3' src="'+data_uri+'"/>';
-
-});
-
-function take_snapshot()
-{
-    console.log(img.id);
-
-    Webcam.snap(function(data_uri) {
-        if(img_id=="selfie1"){
-            document.getElementById("result1").innerHTML ='<img id="selfie1' src="'+data_uri+'"/>';
-
-        }
-        document.getElementById("result2").innerHTML ='<img id="selfie2' src="'+data_uri+'"/>';
-
+    if(img_id=="selfie3"){
+    document.getElementById("result3").innerHTML ='<img id="selfie3" src="'+data_uri+'"/>';
     }
-    document.getElementById("result3").innerHTML ='<img id="selfie3' src="'+data_uri+'"/>';
-
 });
+
+}
 
